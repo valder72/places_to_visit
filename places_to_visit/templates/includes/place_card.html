@@ -2,6 +2,7 @@
 <div class="place-card">
     <div class="card-img-wrapper">
         <img src="{% static 'default_photo.png' %}" alt="{{ place.name }}" class="card-img">
+        <span class="place-type-badge">{{ place.place_type }}</span>
     </div>
 
     <div class="card-body">
@@ -18,6 +19,20 @@
                     {% endif %}
                 {% endfor %}
             </div>
+        </div>
+
+        <p class="card-desc">{{ place.description|truncatewords:6 }}</p>
+
+        <div class="card-info">
+            <span class="location">
+                📍
+                {% if place.location %}
+                    {{ place.location }}
+                {% else %}
+                    <strong>Secret place👀</strong>
+                {% endif %}
+            </span>
+            <small class="date">📅 {{ place.created_at }}</small>
         </div>
 
         <div class="card-footer-row">

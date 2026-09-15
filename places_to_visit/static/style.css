@@ -719,3 +719,30 @@ pre code {
   h2 { font-size: 1.5rem; }
   h3 { font-size: 1.25rem; }
 }
+.place-card .card-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0.2rem 0;
+}
+
+.place-card .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: auto;
+}
+
+.place-card .card-img-wrapper {
+    position: relative;
+}
+
+.star-filled {
+    color: var(--star);
+}
+
+.star-empty {
+    color: #cbd5e1;
+}

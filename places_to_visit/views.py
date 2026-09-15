@@ -67,20 +67,23 @@ def check_places_init(request):
     if "places" not in request.session:
         request.session["places"] = copy.deepcopy(PLACES)
 
+
 def base(request):
     check_places_init(request)
-    
+    selected_place = None
+
     if "random" in request.GET:
-        places = request.session.get('places')
-        selected_place = random.choices(places, weights=[p['rating'] for p in places])[0]
-        return  render(request, 'places/main.html', {"selected_place": selected_place})
-    else:
-        return render(request, 'places/main.html', {"selected_place": None})
+        places = request.session.get("places", [])
+        if places:
+            weights = [p.get("rating", 1) for p in places]
+            selected_place = random.choices(places, weights=weights)[0]
+
+    return render(request, "places/main.html", {"selected_place": selected_place})
 
 def list_places(request):
     check_places_init(request)
-    places = request.session.get('places')
-    return render(request, 'places/list.html', {'places':places})
+    places = request.session.get("places", [])
+    return render(request, "places/list.html", {"places": places})
     
 def place_info(request, num):
     check_places_init(request)
@@ -91,19 +94,20 @@ def place_info(request, num):
         return render(request, 'places/details.html', {'place': None})
 
 def add_place(request):
+    check_places_init(request)
     if request.method == "POST":
         form = PlaceForm(request.POST)
         if form.is_valid():
-            check_places_init(request)
             data = form.cleaned_data
-            places = request.session.get('places')
+            places = request.session.get("places", [])
+
             data['id'] = len(places) + 1
-            calendar = datetime.date.today()
-            data['created_at'] = str(calendar)
-            places = request.session.get('places', [])
+            data["created_at"] = str(datetime.date.today())
+
             places.append(data)
-            request.session['places'] = places
+            request.session["places"] = places
+            request.session.modified = True
+
             return HttpResponseRedirect(reverse('places_to_visit:places_list'))
-        else:
-            return render(request, 'places/add.html', {'form':form})
+        return render(request, 'places/add.html', {'form':form})
     return render(request, 'places/add.html', {'form': PlaceForm()})
