@@ -97,7 +97,7 @@ def place_info(request, num):
     try:
         return render(request, 'places/details.html', {'place': places[num - 1]})
     except IndexError:
-        return render(request, 'places/details.html', {'place': None})
+        return HttpResponseRedirect(reverse('places_to_visit:places_list'))
 
 
 def add_place(request):

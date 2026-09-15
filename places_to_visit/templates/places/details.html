@@ -1,17 +1,17 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="detail-page-wrapper animate-fade-in">
+<div class="detail-wrapper animate-fade-in">
   <a href="{% url 'places_to_visit:places_list' %}" class="back-link"
     >← Повернутися до списку</a
   >
 
-  <div class="detail-card-horizontal">
-    <div class="detail-image-box">
-      <img src="{% static 'default_photo.png' %}" alt="{{ place.name }}" />
-      <span class="place-badge">{{ place.place_type }}</span>
+  <div class="detail-card-split">
+    <div class="detail-media">
+      <img src="{% static 'default_photo.png' %}" alt="{{ place.name }}" class="detail-img" />
+      <span class="place-type-badge">{{ place.place_type }}</span>
     </div>
 
-    <div class="detail-info-box">
-      <h1 class="detail-heading">{{ place.name }}</h1>
+    <div class="detail-content">
+      <h1 class="detail-title">{{ place.name }}</h1>
 
       <div class="detail-meta-row">
         <span class="detail-stars" title="Рейтинг: {{ place.rating }}/5">
@@ -29,7 +29,9 @@
         <span class="detail-date">📅 {{ place.created_at }}</span>
       </div>
 
-      <div class="detail-desc-block">
+      <hr class="detail-divider" />
+
+      <div class="full-description">
         <h3>Опис місця:</h3>
         <p>{{ place.description }}</p>
       </div>

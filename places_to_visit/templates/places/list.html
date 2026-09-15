@@ -7,8 +7,9 @@
 </div>
 
 <div class="places-grid">
-  {% for place in places %} {% include 'includes/place_card.html' with
-  place=place %} {% empty %}
+  {% for place in places %}
+    {% include 'includes/place_card.html' with place=place %}
+  {% empty %}
   <p class="empty-text">Список поки порожній. Додайте своє перше місце!</p>
   {% endfor %}
 </div>
