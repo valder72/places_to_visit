@@ -1,0 +1,27 @@
+{% load static %}
+<div class="place-card">
+    <div class="card-img-wrapper">
+        <img src="{% static 'default_photo.png' %}" alt="{{ place.name }}" class="card-img">
+    </div>
+
+    <div class="card-body">
+        <div class="card-header-row">
+            <h3 class="card-title">
+                <a href="{% url 'places_to_visit:place_detail' place.id %}">{{ place.name }}</a>
+            </h3>
+            <div class="rating" title="Рейтинг: {{ place.rating }}/5">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= place.rating %}
+                        <span class="star-filled">★</span>
+                    {% else %}
+                        <span class="star-empty">☆</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card-footer-row">
+            <a href="{% url 'places_to_visit:place_detail' place.id %}" class="read-more-btn">Детальніше →</a>
+        </div>
+    </div>
+</div>
