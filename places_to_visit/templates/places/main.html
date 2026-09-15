@@ -1,23 +1,28 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="hero-section">
-    <h1 class="hero-title">Не знаєш, куди сходити?</h1>
-    <p class="hero-subtitle">Твій персональний гід улюбленими локаціями: від пар після пар до вихідних на природі.</p>
+  <h1 class="hero-title">Не знаєш, куди сходити?</h1>
+  <p class="hero-subtitle">
+    Твій персональний гід улюбленими локаціями: від пар після пар до вихідних на
+    природі.
+  </p>
 
-    <form method="get" action="{% url 'places_to_visit:home' %}">
-        <button type="submit" name="random" value="true" class="btn-dice pulse-animation">
-            🎲 Куди піти сьогодні?
-        </button>
-    </form>
+  <form method="get" action="{% url 'places_to_visit:home' %}">
+    <button
+      type="submit"
+      name="random"
+      value="true"
+      class="btn-dice pulse-animation"
+    >
+      🎲 Куди піти сьогодні?
+    </button>
+  </form>
 </div>
 
 {% if selected_place %}
 <div class="random-result-container animate-fade-in">
-    <h2>Сьогодні твій вибір:</h2>
-    <div class="single-card-wrap">
-        {% include 'includes/place_card.html' with place=selected_place %}
-    </div>
+  <h2>Сьогодні твій вибір:</h2>
+  <div class="single-card-wrap">
+    {% include 'includes/place_card.html' with place=selected_place %}
+  </div>
 </div>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}

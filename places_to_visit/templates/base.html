@@ -1,32 +1,35 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Мої Улюблені Місця</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
     <header class="site-header">
-        <div class="header-container">
-            <a href="{% url 'places_to_visit:home' %}" class="logo">KyivPlaces✨</a>
-            <nav class="nav-menu">
-                <a href="{% url 'places_to_visit:home' %}" class="nav-link">Головна</a>
-                <a href="{% url 'places_to_visit:places_list' %}" class="nav-link">Усі місця</a>
-                <a href="{% url 'places_to_visit:add_place' %}" class="btn-primary">+ Додати місце</a>
-            </nav>
-        </div>
+      <div class="header-container">
+        <a href="{% url 'places_to_visit:home' %}" class="logo">KyivPlaces✨</a>
+        <nav class="nav-menu">
+          <a href="{% url 'places_to_visit:home' %}" class="nav-link"
+            >Головна</a
+          >
+          <a href="{% url 'places_to_visit:places_list' %}" class="nav-link"
+            >Усі місця</a
+          >
+          <a href="{% url 'places_to_visit:add_place' %}" class="btn-primary"
+            >+ Додати місце</a
+          >
+        </nav>
+      </div>
     </header>
 
-    <main class="main-content">
-        {% block content %}
-        {% endblock %}
-    </main>
+    <main class="main-content">{% block content %} {% endblock %}</main>
 
     <footer class="site-footer">
-        <p>Створено: 15.09.2026</p>
-        <p>Автор: Погрібний Володимир</p>
+      <p>Створено: 15.09.2026</p>
+      <p>Автор: Погрібний Володимир</p>
     </footer>
-</body>
+  </body>
 </html>
