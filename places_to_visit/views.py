@@ -1,10 +1,13 @@
 import copy
 import datetime
+import random
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+
 from .forms import PlaceForm
-import random
+
 
 PLACES = [
     {
@@ -63,6 +66,7 @@ PLACES = [
     }
 ]
 
+
 def check_places_init(request):
     if "places" not in request.session:
         request.session["places"] = copy.deepcopy(PLACES)
@@ -80,11 +84,13 @@ def base(request):
 
     return render(request, "places/main.html", {"selected_place": selected_place})
 
+
 def list_places(request):
     check_places_init(request)
     places = request.session.get("places", [])
     return render(request, "places/list.html", {"places": places})
-    
+
+
 def place_info(request, num):
     check_places_init(request)
     places = request.session.get('places')
@@ -92,6 +98,7 @@ def place_info(request, num):
         return render(request, 'places/details.html', {'place': places[num - 1]})
     except IndexError:
         return render(request, 'places/details.html', {'place': None})
+
 
 def add_place(request):
     check_places_init(request)

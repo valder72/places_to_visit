@@ -1,5 +1,6 @@
 from django import forms
 
+
 class PlaceForm(forms.Form):
     name = forms.CharField()
     place_type = forms.CharField()
