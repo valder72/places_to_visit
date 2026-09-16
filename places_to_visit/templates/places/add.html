@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div class="form-container animate-fade-in add_new_data">
+  <h2 class="add_new_data">Додати нове місце</h2>
+
+  <form
+    method="post"
+    action="{% url 'places_to_visit:add_place' %}"
+    class="custom-form"
+  >
+    {% csrf_token %} {% if form.errors %}
+    <div class="form-errors">
+      <p>Будь ласка, виправте помилки у формі.</p>
+    </div>
+    {% endif %} {% for field in form %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }} {% if field.errors %}
+      <span class="field-error">{{ field.errors.0 }}</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn-submit">Зберегти місце</button>
+  </form>
+</div>
+{% endblock %}

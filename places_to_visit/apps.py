@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CafeConfig(AppConfig):
-    name = 'cafe'
+    name = 'places_to_visit'
